@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const register = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -89,10 +90,11 @@ const register = () => {
         >
           Register
         </button>
+        <p className=" m-4 text-sm italic">Already have an account? <Link to={'/login'} className="text-blue-500">Sign In</Link></p>
       </form>
-      <p>A</p>
+
     </div>
   );
 };
 
-export default register;
+export default Register;

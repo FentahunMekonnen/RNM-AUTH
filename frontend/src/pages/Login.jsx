@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
+import axios from 'axios'
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -14,10 +15,16 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Login Submitted", formData);
-    // Add your login logic here
+  try {
+    const response = await axios.post('http://localhost:3000/lauth/signup',formData)
+    // console.log(response)
+     setFormData(response)
+  } catch (error) {
+    console.log(error)
+  }
+ 
   };
 
   return (
@@ -70,6 +77,7 @@ const Login = () => {
         >
           Login
         </button>
+        <p className=" m-4 text-sm italic">Already have an account? <Link to={'/signup'} className="text-blue-500">Register</Link></p>
       </form>
     </div>
   );
